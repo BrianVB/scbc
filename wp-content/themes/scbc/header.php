@@ -16,7 +16,6 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo auto_version('/wp-content/themes/scbc/css/bootstrap.min.css'); ?>" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?php echo auto_version('/wp-content/themes/scbc/css/bootstrap-responsive.min.css'); ?>" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo auto_version('/wp-content/themes/scbc/style.css'); ?>" media="screen, projection" />
 	<?php wp_head(); ?>
 </head>
