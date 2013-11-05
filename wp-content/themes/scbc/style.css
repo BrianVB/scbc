@@ -37,8 +37,8 @@ margin-top:10px;
 
 #logo_text{
 position: absolute;
-top: 31px;
-left: 171px;
+top: 19px;
+left: 186px;
 font-size: 2.2em;
 font-weight: normal;
 }
@@ -53,28 +53,28 @@ box-shadow:0px 1px 3px;
 height: 1px;
 width: 221px;
 top: 34px;
-left: 186px;
+left: 201px;
 }
 
 #hr-2{
 height: 2px;
 width: 708px;
 top: 41px;
-left: 187px;
+left: 202px;
 }
 
 #hr-3{
 height: 2px;
 width: 632px;
 top: 78px;
-left: 149px;
+left: 164px;
 }
 
 #hr-4{
 height: 1px;
 width: 364px;
 top: 87px;
-left: 144px;
+left: 159px;
 }
 
 #navigation{
@@ -83,8 +83,7 @@ border-top: 1px solid #fff;
 border-bottom: 1px solid #fff;
 }
 #menu-main-navigation{
-margin: 0 auto;
-width: 76%;
+margin:0;
 font-size: 1.7em;
 padding: 7px 0;
 }
@@ -95,4 +94,7 @@ margin-right:5%;
 }
 #navigation a{
 color:#fff;
+}
+#navigation #menu-item-26{
+margin-right:0px;
 }

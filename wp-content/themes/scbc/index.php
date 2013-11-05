@@ -1,13 +1,15 @@
 <?php get_header(); ?>
 
 	<div class="container">
-		<div id="content" class="site-content" role="main">
-		<?php if ( have_posts() ) : ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php the_permalink( 'content', get_post_format() ); ?>
-			<?php endwhile; ?>
-		<?php endif; ?>
-		</div><!-- #content -->
+		<div class="col-xs-12 col-sm-4">
+			Latest News
+		</div>
+		<div class="col-xs-12 col-sm-4">
+			Instagram
+		</div>
+		<div class="col-xs-12 col-sm-4">
+			Events
+		</div>
 	</div><!-- #primary -->
 
 <?php get_footer(); ?>
