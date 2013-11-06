@@ -5,7 +5,8 @@
 			Latest News
 		</div>
 		<div class="col-xs-12 col-sm-4">
-			Instagram
+<?php 		$instagram_photo_data = get_latest_instagram(); ?>
+			<img class="img-responsive" src="<?php echo $instagram_photo_data['images']['low_resolution']['url']; ?>" alt="<?php echo $instagram_photo_data['caption']; ?>" />
 		</div>
 		<div class="col-xs-12 col-sm-4">
 			Events

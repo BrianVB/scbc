@@ -315,4 +315,26 @@ function spacebrews_comment( $comment, $args, $depth ) {
   </div>
 <?php
 }
+
+/**
+ * Gets our latest image from our instagram account
+ * @author Brian VB
+ */
+define('INSTAGRAM_ACCSES_TOKEN','627033820.0dc1854.7d632257d0ec49b1b691ccae23075539'); 
+define('INSTAGRAM_USER_ID','627033820');
+
+function get_latest_instagram(){
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, 'https://api.instagram.com/v1/users/'.INSTAGRAM_USER_ID.'/media/recent/?access_token='.INSTAGRAM_ACCSES_TOKEN.'&count=1');
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  $result_raw = curl_exec($ch);
+  $result_decoded = json_decode($result_raw,true);
+
+  if(isset($result_decoded['data'][0])){
+    return $result_decoded['data'][0];
+  } else {
+    return 'this failed'; // --- @todo make this something default
+  }
+}
+
 ?>
