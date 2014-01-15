@@ -43,6 +43,9 @@
 					<?php endforeach; ?>
 				</ul>
 			</div>
+			<div class="like-container">
+				<div class="fb-like" data-href="https://www.facebook.com/SpaceCraftBrewing" data-layout="button" data-show-faces="true" data-action="like" data-share="true"></div>
+			</div>
 		</div>
 	</div>
 </div><!-- #primary -->
