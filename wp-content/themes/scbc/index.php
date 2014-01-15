@@ -1,44 +1,33 @@
 <?php get_header(); ?>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-4">
-				<?php
-				$featured_post_query = new WP_Query((array('posts_per_page'=>1)));
-				$featured_post_query->the_post();
-				the_title();
-				the_excerpt();
-				?>
-			</div>
-			<div class="col-xs-12 col-sm-4">
-				<?php if($instagram_photo_data = get_latest_instagram()): ?>
-				<img class="img-responsive" src="<?php echo $instagram_photo_data['images']['low_resolution']['url']; ?>" alt="" />
-				<p><?php echo $instagram_photo_data['caption']; ?></p>
-				<?php else: ?>
-				<img class="img-responsive" src="/wp-content/themes/scbc/img/home-instagram-default.jpg" alt="Space Craft Brewing Company" />
-				<p>Default shit if no instagram picture is available</p>
-				<?php endif; ?>
-			</div>
-			<div class="col-xs-12 col-sm-4">
-				<div class="row">
-					<h3>Next Event:</h1>
-					<?php
-					$next_event_query = new WP_Query((array('post_type'=>'event','posts_per_page'=>1)));
-					$next_event_query->the_post();
-					the_title();
-					the_excerpt();
-					?>
-				</div>
-				<div id="latest-facebook">
-					<?php if($latest_facebook_post = get_latest_facebook()): ?>
-					<?php print_r($latest_facebook_post); ?>
-					<?php else: ?>
-					Our latest facebook post is not available. Please cry about it.
-					<?php endif; ?>
+<div class="container" id="news-container">
+	<div class="row">
+		<div class="col-xs-9">
+	<?php if ( have_posts() ) : ?>
+		<?php while ( have_posts() ) : the_post(); ?>
+			<div class="row bottom-sep">
+				<div class="col-xs-12">
+					<div class="row post" class="clearfix">
+						<div class="col-xs-8">
+							<h2 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+							<small><?php the_time('F j, Y'); ?> at <?php the_time('g:i a'); ?></small>
+							<?php the_excerpt(); ?>
+						</div>
+						<div class="col-xs-4">
+							<?php the_post_thumbnail('news-thumb', array('class'=>'img-responsive'));
+							/* Make these images 225px that's the biggest they should ever be*/
+							?>
+						</div>
+					</div>
 				</div>
 			</div>
+		<?php endwhile; ?>
+	<?php else : ?>
+		No fuckin posts motherfucker
+	<?php endif; ?>
 		</div>
-	</div><!-- #primary -->
-
+		<div class="col-xs-3">
+			<?php dynamic_sidebar('Blog Sidebar'); ?>
+		</div>
+	</div>
+</div><!-- #primary -->
 <?php get_footer(); ?>
-

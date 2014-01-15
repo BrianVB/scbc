@@ -5,6 +5,29 @@
 */
 
 /**
+ * @var array of Months with their numbers as keys
+ */
+$months = array(
+  1=>'January',
+  2=>'February',
+  3=>'March',
+  4=>'April',
+  5=>'May',
+  6=>'June',
+  7=>'July',
+  8=>'August',
+  9=>'September',
+  10=>'October',
+  11=>'November',
+  12=>'December',
+);
+
+/**
+ * We want this to be in the meta tags and used on pages to avoid using the function twice we'll store it in a global variable
+ */
+$featured_image_data = '';
+
+/**
 Register the Sidebars
 */
 if ( function_exists('register_sidebar') ) {
@@ -76,14 +99,13 @@ function brew_meta_html() {
     global $post;
  
     // Noncename needed to verify where the data originated
-    echo '<input type="hidden" name="meta_noncename" id="meta_noncename" value="' .
-    wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
+    echo '<input type="hidden" name="_brew_noncename" id="_brew_noncename" value="'.wp_create_nonce( plugin_basename(__FILE__) ).'" />';
  
     // Get the abv data if its already been entered
-    $abv = get_post_meta($post->ID, '_abv', true);
+    $abv = get_post_meta($post->ID, '_brew_abv', true);
  
     // Echo out the field
-    echo '<input type="text" name="_abv" value="' . $abv  . '" class="widefat" placeholder="e.g. &ldquo;7.5&rdquo;" />';
+    echo '<input type="text" name="_brew_abv" value="' . $abv  . '" class="widefat" placeholder="e.g. &ldquo;7.5&rdquo;" />';
 
 }
 
@@ -91,9 +113,10 @@ function brew_meta_html() {
 add_action('save_post', 'save_brew_meta', 1, 2); // save the custom fields
 // Save the abv 
 function save_brew_meta($post_id, $post) {
-  if($post->post_type == 'brew'){ // --- Only run this if we're saving a brew
+  if($post->post_type == 'brew' && isset($_POST['save'])){ // --- Only run this if we're saving a brew
+
     // --- verify
-    if ( !wp_verify_nonce( $_POST['brew_noncename'], plugin_basename(__FILE__) )) {
+    if ( !wp_verify_nonce( $_POST['_brew_noncename'], plugin_basename(__FILE__) )) {
 		  wp_die('This brew was not processed properly.');
     }
  
@@ -102,7 +125,7 @@ function save_brew_meta($post_id, $post) {
       wp_die('You do not have permissions to do that.');
     }
 
-    $brew_meta['_abv'] = $_POST['_abv'];
+    $brew_meta['_brew_abv'] = $_POST['_brew_abv'];
  
     // Add abv value as a custom field
     foreach ($brew_meta as $key => $value) { 
@@ -210,7 +233,7 @@ function event_meta() {
 
 add_action('save_post', 'save_event_meta', 1, 2); // save the custom fields
 function save_event_meta($post_id, $post){
-  if($post->post_type == 'event'){
+  if($post->post_type == 'event' && isset($_POST['save'])){
     // --- Authenticate
     if ( !wp_verify_nonce( $_POST['_event_noncename'], plugin_basename(__FILE__) )) {
       wp_die('This event was not processed properly.');
@@ -293,6 +316,7 @@ function get_event_meta(){
 *******************************************************************/
 if ( function_exists( 'add_theme_support' ) ) { // Added in 2.9
   add_theme_support( 'post-thumbnails' );
+  add_image_size( 'news-thumb', 300);
 	add_theme_support( 'menus' );
 	add_theme_support( 'automatic-feed-links' );
 }
@@ -486,15 +510,28 @@ function get_latest_instagram(){
 }
 
 /**
+ * Gets our latest image from our instagram account
+ * @author Brian VB
+ */
+define('FACEBOOK_PAGE_ACCESS_TOKEN','CAAURZBW1weO0BAK9CSivMDlEqVAZCZBK2Ru17ZA2X6n0jaLpk1JzRBwkaZBjZCOPORoIClIWIcz1iSViTUjOG2fZAxOXnqFQYFlbpJwZBzC5RNpvaEHpzpeLZAQ7B8epZBtmzDbrawttWZAvypZB5PZBfOQesZAikIT53VfzjDpef5zA71GA9x55RuWRd5yZAxyOsuyu6kZD'); 
+define('FACEBOOK_APP_ID','1427137864169709');
+define('FACEBOOK_APP_SECRET','dcae2f1dd3cc68e44a07a1f03037536e');
+
+/**
  * Gets the latest facebook post from our SCBC page
- * This didn't work right off the bat because we are an alcohol related site and have permissions issues.
- * Visit the open graph API call making page: https://developers.facebook.com/tools/explorer?method=GET&path=SpaceCraftBrewing%3Ffields%3Dposts.limit(1)
- * First, put myself in that thing, and request a token for myself
+ * This didn't work right off the bat because we are an alcohol related site and have permissions issues. 
+ * I had to create a facebook app to be able to manage my SCBC page. Then I followed instructions at this URL for getting my access token: http://itslennysfault.com/get-facebook-access-token-for-graph-api
+ * That token had a brief expiration, though, so I had to follow the instructions here to get a token that should last for 60 days: https://developers.facebook.com/docs/roadmap/completed-changes/offline-access-removal/#extend_token 
+ * Another resource: https://developers.facebook.com/docs/facebook-login/access-tokens/#extending
+ * I then went to the facebook graph API page (https://developers.facebook.com/tools/explorer/121632337907271/?method=GET&path=15709719%3Ffields%3Daccounts) and searched for /me/accounts with my access token in the top bar
+ * Once in there I found the access token under SCBC and THAT is the tokent that I use below
+ * Once you are all done with this you can debug and make sure it's all right here: https://developers.facebook.com/tools/debug/accesstoken
+ * When I use that new access token and do /me in the explorer, it's my page. When I debug it, it includes the profile ID for my page as well so I know it's good
  * Then, once I have that token I can use it to make calls for the SCBC page. That token is at the end of the URL below.
  */
 function get_latest_facebook(){
   $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/SpaceCraftBrewing?fields=posts.limit(1)&method=GET&format=json&suppress_http_code=1&access_token=CAACEdEose0cBAOuuBW55eW0KZBBptiz5Ou2S52y0752p7zKMRF3cUfpBpICuFfCkj1FZA30tYuLAkLPvnXTCI07NWT2zCZBHKvjDxiOZA2VffnCxkqC6Vp5uQ19YhelH2JL3mipYUohmn7xiQfQipExfZA7d6dlrtUoZBTZAnzG3qIqG6ELoZApH4MIy178C5ec0hHvnQxrHSgZDZD');
+  curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/SpaceCraftBrewing?fields=posts.limit(1)&method=GET&format=json&suppress_http_code=1&access_token='.FACEBOOK_PAGE_ACCESS_TOKEN);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   $result_raw = curl_exec($ch);
   $result_decoded = json_decode($result_raw,true);
@@ -505,4 +542,202 @@ function get_latest_facebook(){
     return false;
   }
 }
-?>
+
+/**
+ * Uses cURL to follow the URL to the final location of the image. We do this to hide our access token
+ * @return string the url/src of the facebook icon image
+ */
+function get_facebook_icon_url(){ 
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/SpaceCraftBrewing/picture?access_token='.FACEBOOK_PAGE_ACCESS_TOKEN);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  $result = curl_exec($ch);
+  return curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+}
+
+/**
+ * Checks to see if a user uses our facebook app
+ */
+function uses_facebook_app(){
+  require_once($_SERVER['DOCUMENT_ROOT'].'/wp-content/themes/scbc/classes/facebook/facebook.php');
+  $facebook = new Facebook(array(
+    'appId'  => FACEBOOK_APP_ID,
+    'secret' => FACEBOOK_APP_SECRET,
+  ));
+
+  $facebook_user = $facebook->getUser();
+  if ($facebook_user) {
+    return true;
+  }
+}
+
+
+/**
+ * Makes sure that a user is legally allowed to be viewing the content
+ */
+function verify_age($dob_array){
+  $date_str = $dob_array['year'].'-'.$dob_array['month'].'-'.$dob_array['day'];
+  if( strtotime($date_str) < strtotime('-21 years') ){
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Shows a verification modal if the user hasn't verified their age
+ */
+function gate_site(){
+  if( ! (isset($_COOKIE['verified']) || is_page('kiddie-ride') ) ) { // --- Only gate if they aren't verified 
+    if(isset($_POST['dob'])){
+      if(verify_age($_POST['dob'])){
+        setcookie('verified','1',time()+60*60*24*365,'/');
+      } else {
+        wp_redirect( home_url().'/kiddie-ride/');
+      }
+    } elseif(uses_facebook_app()){
+      setcookie('verified','1',time()+60*60*24*365,'/');
+    } else {
+      add_action('wp_footer','show_verification_modal');
+    }
+  }
+}
+add_action('template_redirect','gate_site');
+
+/**
+ * Include the HTML for the age verification modal
+ */
+function show_verification_modal(){
+  include_once $_SERVER['DOCUMENT_ROOT'].'/wp-content/themes/scbc/inc/_verification_dialog.php';
+}
+
+/**
+ * Returns the post object for a featured image of a post so we can get caption, title, etc.
+ * @return WP_post object for the featured image
+ */
+function get_post_featured_image_data() {
+  global $post;
+
+  $thumb_id = get_post_thumbnail_id($post->id);
+
+  $args = array(
+    'post_type' => 'attachment',
+    'post_status' => null,
+    'post_parent' => $post->ID,
+    'include'  => $thumb_id
+  ); 
+
+  $thumbnail_image = get_posts($args);
+
+  if ($thumbnail_image && isset($thumbnail_image[0])) {
+    return $thumbnail_image[0];
+  } else {
+    return false;
+  }
+}
+
+/**
+ * Add meta tags in the head sections
+ */
+function sb_add_meta_tags(){
+  // --- Add general tags for our page to be recognized on Facebook
+  
+  
+  if(is_single()){
+    // --- Store featured image data in a global variable for reuse
+    global $featured_image_data;
+    $featured_image_data = get_post_featured_image_data();
+    echo '<meta property="og:type"   content="article" />'."\n";
+    echo '<meta property="og:image"  content="'.$featured_image_data->guid.'" />'."\n";
+  }
+}
+
+add_action( 'after_setup_theme', 'sb_ahoy', 16 );
+/**
+ * Do some major cleaning up of automatic WP things
+ */
+function sb_ahoy() {
+
+  // launching operation cleanup
+  add_action( 'init', 'sb_head_cleanup' );
+  // remove WP version from RSS
+  add_filter( 'the_generator', 'sb_rss_version' );
+  // remove pesky injected css for recent comments widget
+  add_filter( 'wp_head', 'sb_remove_wp_widget_recent_comments_style', 1 );
+  // clean up comment styles in the head
+  add_action( 'wp_head', 'sb_remove_recent_comments_style', 1 );
+  // clean up gallery output in wp
+  add_filter( 'gallery_style', 'sb_gallery_style' );
+
+  // enqueue base scripts and styles
+  add_action( 'wp_enqueue_scripts', 'sb_add_scripts', 999 );
+
+  // --- Add meta tags we want on apporpriate pages
+  add_action('wp_head', 'sb_add_meta_tags');
+} /* end sb ahoy */
+
+function sb_head_cleanup() {
+  // category feeds
+  remove_action( 'wp_head', 'feed_links_extra', 3 );
+  // post and comment feeds
+  remove_action( 'wp_head', 'feed_links', 2 );
+  // EditURI link
+  remove_action( 'wp_head', 'rsd_link' );
+  // windows live writer
+  remove_action( 'wp_head', 'wlwmanifest_link' );
+  // index link
+  remove_action( 'wp_head', 'index_rel_link' );
+  // previous link
+  remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
+  // start link
+  remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
+  // links for adjacent posts
+  remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
+  // WP version
+  remove_action( 'wp_head', 'wp_generator' );
+  // remove WP version from css
+  add_filter( 'style_loader_src', 'sb_remove_wp_ver_css_js', 9999 );
+  // remove Wp version from scripts
+  add_filter( 'script_loader_src', 'sb_remove_wp_ver_css_js', 9999 );
+
+} /* end sb head cleanup */
+
+// remove WP version from RSS
+function sb_rss_version() { return ''; }
+
+// remove WP version from scripts
+function sb_remove_wp_ver_css_js( $src ) {
+  if ( strpos( $src, 'ver=' ) )
+    $src = remove_query_arg( 'ver', $src );
+  return $src;
+}
+
+// remove injected CSS for recent comments widget
+function sb_remove_wp_widget_recent_comments_style() {
+  if ( has_filter( 'wp_head', 'wp_widget_recent_comments_style' ) ) {
+    remove_filter( 'wp_head', 'wp_widget_recent_comments_style' );
+  }
+}
+
+// remove injected CSS from recent comments widget
+function sb_remove_recent_comments_style() {
+  global $wp_widget_factory;
+  if (isset($wp_widget_factory->widgets['WP_Widget_Recent_Comments'])) {
+    remove_action( 'wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style') );
+  }
+}
+
+// remove injected CSS from gallery
+function sb_gallery_style($css) {
+  return preg_replace( "!<style type='text/css'>(.*?)</style>!s", '', $css );
+}
+
+/**
+ * Load in the javascripst necessary to run the site
+ */
+function sb_add_scripts(){
+  if( !is_admin() ){
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('bootstrap', '/wp-content/themes/scbc/js/bootstrap.min.js');
+  } 
+}

@@ -1,0 +1,16 @@
+{
+  "vars": {
+    "@body-bg": "#000",
+    "@text-color": "#fff"
+  },
+  "css": [
+    "grid.less",
+    "responsive-utilities.less"
+  ],
+  "js": [
+    "modal.js",
+    "affix.js",
+    "collapse.js",
+    "scrollspy.js"
+  ]
+}

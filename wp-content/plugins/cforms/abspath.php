@@ -1,0 +1,1 @@
+<?php $abspath = '/var/www/vhosts/spacebrews.com/sb-beta/'; ?>
