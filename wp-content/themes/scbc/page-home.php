@@ -7,6 +7,7 @@
 				<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 				<small><?php the_time('F j, Y'); ?> at <?php the_time('g:i a'); ?></small>
 				<p><?php echo get_the_excerpt(); ?></p>
+				<div class="visible-xs"></div>
 			</div>
 			<div class="col-xs-12 col-sm-4" id="latest-instagram-container">
 				<?php if($instagram_photo_data = get_latest_instagram()): ?>
@@ -26,6 +27,7 @@
 				<span class="ig-follow" data-id="cd71c1a4eb" data-count="true" data-size="small" data-username="true"></span> <br />
 				<span>Instagram is having a problem, so enjoy this!</span>
 				<?php endif; ?>
+				<div class="visible-xs"></div>
 			</div>
 			<div class="col-xs-12 col-sm-4" id="social-container">
 				<div class="row bottom-sep" id="next-event">
