@@ -143,7 +143,8 @@ margin-top: 29px;
 margin-bottom:0;
 }
 
-.home p:first-of-type{margin-top: 0;
+.home p:first-of-type{
+margin-top: 0;
 }
 
 .bottom-sep{
@@ -167,6 +168,38 @@ content: " ";
 .bottom-sep:last-child:after{
 display:none;
 }
+
+@media (max-width: 767px) {
+  .bottom-sep{
+  margin-bottom:0;
+  }
+  .bottom-sep:after{
+  bottom:40px;
+  }
+  .home .col-xs-12 {
+    position: relative;
+    margin-bottom: 30px;
+  }
+  .home .col-xs-12>div:last-child{
+  background-color: #000;
+  padding-bottom: 16px;
+  }
+  .home .col-xs-12:after{
+  box-shadow: 0 0 7px;
+  width: 80%;
+  height: 10px;
+  position: relative;
+  left: 10%;
+  z-index: -1;
+  bottom: 10px;
+  content: " ";
+  display:block;
+  }
+  .home .col-xs-12:last-child:after{
+  display:none;
+  }
+}
+
 #menu-main-navigation{
 font-size: 1.3em;
 font-family: "Euphemia UCAS", sans-serif;
@@ -472,8 +505,29 @@ text-align:center;
 }
 
 /* Sidebar */
-.page .sidebar{
+.page .nav{
 border: 1px solid white;
 border-radius: 15px;
 padding: 10px;
+}
+
+@media (max-width: 767px) {
+  .page .col-sm-3 {
+    display:none;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .page .sidebar {
+    width:157px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page .sidebar {
+    width:212px;
+  }
+}
+@media (min-width: 1200px) {
+  .page .sidebar {
+    width:262px;
+  }
 }
