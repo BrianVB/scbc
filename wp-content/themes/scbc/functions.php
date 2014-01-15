@@ -317,8 +317,18 @@ function get_event_meta(){
 if ( function_exists( 'add_theme_support' ) ) { // Added in 2.9
   add_theme_support( 'post-thumbnails' );
   add_image_size( 'news-thumb', 300);
+  add_image_size( 'page-content-img', 400);
 	add_theme_support( 'menus' );
 	add_theme_support( 'automatic-feed-links' );
+}
+
+add_filter( 'image_size_names_choose', 'scbc_image_sizes_choose' );
+function scbc_image_sizes_choose( $sizes ) {
+  $custom_sizes = array(
+    'news-thumb' => 'News Thumb',
+    'page-content-img' => 'Page Content Image'
+  );
+  return array_merge( $sizes, $custom_sizes );
 }
 
 /******************************************************************
