@@ -35,16 +35,18 @@
 ?>
 		</div>
 		<div class="col-sm-3">
-			<div id="brews-menu-container" class="sidebar">
-				<ul id="brews-menu" class="nav">
-					<li><a href="#brews-main-content">The Spacebrews</a></li>
-					<?php foreach($menu_items as $menu_item): ?>
-					<li><a href="#<?php echo $menu_item['html-id']; ?>"><?php echo $menu_item['label']; ?></a></li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
-			<div class="like-container">
-				<div class="fb-like" data-href="https://www.facebook.com/SpaceCraftBrewing" data-layout="button" data-show-faces="true" data-action="like" data-share="true"></div>
+			<div class="sidebar">
+				<div id="brews-menu-container">
+					<ul id="brews-menu" class="nav">
+						<li><a href="#brews-main-content">The Spacebrews</a></li>
+						<?php foreach($menu_items as $menu_item): ?>
+						<li><a href="#<?php echo $menu_item['html-id']; ?>"><?php echo $menu_item['label']; ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+				<div class="like-container">
+					<div class="fb-like" data-href="https://www.facebook.com/SpaceCraftBrewing" data-layout="button" data-show-faces="true" data-action="like" data-share="true"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -56,7 +58,7 @@ jQuery(document).ready(function($){
 	$(window).on('load', function () {
 		$("body").scrollspy('refresh')
 	})
-	$('#brews-menu-container').affix({
+	$('.sidebar').affix({
 		offset: {
 			top: 74
 		}

@@ -6,14 +6,16 @@
 			<?php the_content(); ?>
 		</div>
 		<div class="col-sm-3">
-			<div id="about-menu-container" class="sidebar">
-				<ul id="about-menu" class="nav">
-					<li><a href="#origin-heading">The Origin</a></li>
-					<li><a href="#mission-heading">The Statement of Universal Intent</a></li>
-				</ul>
-			</div>
-			<div class="like-container">
-				<div class="fb-like" data-href="https://www.facebook.com/SpaceCraftBrewing" data-layout="button" data-show-faces="true" data-action="like" data-share="true"></div>
+			<div class="sidebar">
+				<div id="about-menu-container">
+					<ul id="about-menu" class="nav">
+						<li><a href="#origin-heading">The Origin</a></li>
+						<li><a href="#mission-heading">The Statement of Universal Intent</a></li>
+					</ul>
+				</div>
+				<div class="like-container">
+					<div class="fb-like" data-href="https://www.facebook.com/SpaceCraftBrewing" data-layout="button" data-show-faces="true" data-action="like" data-share="true"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -25,7 +27,7 @@ jQuery(document).ready(function($){
 	$(window).on('load', function () {
 		$("body").scrollspy('refresh')
 	});
-	$('#about-menu-container').affix({
+	$('.sidebar').affix({
 		offset: {
 			top: 74
 		}
