@@ -5,11 +5,12 @@
 			<?php the_post(); ?>
 			<div class="row bottom-sep"id="brews-main-content">
 				<div class="col-xs-12">
+					<h1>SpaceBrews</h1>
 					<?php the_content(); ?>
 				</div>
 			</div>
 <?php 
-			$brews_query = new WP_Query(array('post_type'=>'brew','orderby'=>'menu_order')); 
+			$brews_query = new WP_Query(array('nopaging'=>true,'post_type'=>'brew','orderby'=>'menu_order','order'=>'ASC')); 
 			$x = 0;
 			while($brews_query->have_posts()):
 				$brews_query->the_post(); 
@@ -20,8 +21,9 @@
 				<div class="col-xs-12">
 					<div class="row brew-container" id="<?php echo $menu_items[$x]['html-id'] ?>">
 						<div class="col-xs-6">
-							<?php echo $menu_items[$x]['label']; ?>
+							<h2><?php echo $menu_items[$x]['label']; ?></h2>
 							<?php the_content(); ?>
+							<?php echo $brew_meta; ?>
 						</div>
 						<div class="col-xs-6">
 							<img class="img-responsive" src="http://placehold.it/439/000/fff&text=Label+Coming+Soon!">

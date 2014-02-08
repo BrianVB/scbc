@@ -751,3 +751,19 @@ function sb_add_scripts(){
     wp_enqueue_script('bootstrap', '/wp-content/themes/scbc/js/bootstrap.min.js');
   } 
 }
+
+/**
+ * Show the brews in the admin area in the same order we want them on the front end
+ * @author Brian VB
+ */
+function set_brews_admin_order($wp_query) {
+  if (is_admin()) {
+    $post_type = $wp_query->query['post_type'];
+    if ( $post_type == 'brew') {
+      $wp_query->set('orderby', 'menu_order');
+      $wp_query->set('order', 'ASC');
+      print_r($wp_query);
+    }
+  }
+}
+add_filter('pre_get_posts', 'set_brews_admin_order');

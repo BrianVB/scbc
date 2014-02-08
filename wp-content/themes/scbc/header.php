@@ -29,6 +29,17 @@ $page_description = scbc_get_the_meta_desc();
 	<meta property="og:description"  content="<?php echo $page_description; ?>" />
 	<meta property="og:url"    content="<?php echo "http://" . $_SERVER['HTTP_HOST']  . $_SERVER['REQUEST_URI']; ?>" />
 	<?php wp_head(); ?>
+
+	<script>
+		// --- Google Analytics Tracking Code
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-9709827-3', 'spacebrews.com');
+		ga('send', 'pageview');
+	</script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -79,11 +90,11 @@ function testAPI() {
 	<?php if(is_front_page()): ?>
 		<div class="container">	
 			<a href="/"><img id="logo" src="/wp-content/themes/scbc/img/logo.png" alt="Space Craft Brewing Company" /></a>
-			<div id="hr-1" class="logo-hr"></div>
-			<div id="hr-2" class="logo-hr"></div>
+			<div id="hr-1" class="logo-hr"><div class="inner"></div></div>
+			<div id="hr-2" class="logo-hr"><div class="inner"></div></div>
 			<h1 id="logo_text">Space Craft Brewing Co</h1>
-			<div id="hr-3" class="logo-hr"></div>
-			<div id="hr-4" class="logo-hr"></div>
+			<div id="hr-3" class="logo-hr"><div class="inner"></div></div>
+			<div id="hr-4" class="logo-hr"><div class="inner"></div></div>
 		</div>
 	<?php endif; ?>
 		<div id="navigation">
@@ -99,3 +110,8 @@ function testAPI() {
 			</div>
 		</div>
 	</header><!-- #masthead -->
+	<script type="text/javascript">
+	jQuery(document).ready(function($){
+		$("header").addClass('hr-visible');
+	});
+	</script>

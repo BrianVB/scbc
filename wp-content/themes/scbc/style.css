@@ -101,9 +101,7 @@ font-family: "DymaxionScriptRegular","script", serif;
 }
 
 .logo-hr{
-background:#fff;	
 position:absolute;
-box-shadow:0px 1px 3px;
 }
 
 #hr-1{
@@ -112,27 +110,37 @@ width: 23%;
 top: 34px;
 left: 201px;
 }
-
 #hr-2{
 height: 2px;
 width: 74%;
 top: 41px;
 left: 202px;
 }
-
 #hr-3{
 height: 2px;
 width: 65%;
 top: 78px;
 left: 164px;
 }
-
 #hr-4{
 height: 1px;
 width: 38%;
 top: 87px;
 left: 159px;
 }
+.logo-hr .inner{
+height:100%;
+width:0%;
+box-shadow:0px 1px 3px;
+background:#fff;
+}
+.hr-visible .inner{
+-webkit-transition: width 2s ease-in-out;
+-moz-transition: width 2s ease-in-out;
+-o-transition: width 2s ease-in-out;
+transition: width 2s ease-in-out;
+width:100%;
+} 
 
 .home #navigation{
 border-top: 1px solid #fff;
@@ -180,11 +188,11 @@ display:none;
     position: relative;
     margin-bottom: 30px;
   }
-  .home .col-xs-12>div:last-child{
+  .home .col-xs-12>div:last-child, .page-id-23 .col-xs-12>div:last-child{
   background-color: #000;
   padding-bottom: 16px;
   }
-  .home .col-xs-12:after{
+  .home .col-xs-12:after, .page-id-23 .col-xs-12:after{
   box-shadow: 0 0 7px;
   width: 80%;
   height: 10px;
@@ -195,7 +203,7 @@ display:none;
   content: " ";
   display:block;
   }
-  .home .col-xs-12:last-child:after{
+  .home .col-xs-12:last-child:after, .page-id-23 .col-xs-12:last-child:after{
   display:none;
   }
 }
@@ -530,4 +538,28 @@ padding: 10px;
   .page .sidebar {
     width:262px;
   }
+}
+
+@keyframes black-to-white{
+  from { color: #FFF; } 90% { color: #000;} to { color: #FFF;}
+}
+
+@keyframes glow{
+  from { text-shadow: 0 0 0 #FFFFFF; } 90% { text-shadow: 0 0 3px #FFFFFF;} to { text-shadow: 0 0 0 #FFFFFF;}
+}
+
+@-webkit-keyframes webkit-black-to-white{
+  from { color: #FFF; } 90% { color: #000;} to { color: #FFF;};
+}
+
+@-webkit-keyframes webkit-glow{
+  from { text-shadow: 0 0 0 #FFFFFF; } 90% { text-shadow: 0 0 3px #FFFFFF;} to { text-shadow: 0 0 0 #FFFFFF;};
+}
+
+.gangster-dance-inspired{
+  font-weight:bold;
+-webkit-animation:webkit-black-to-white 20s infinite,
+  webkit-glow 20s infinite;
+animation:black-to-white 20s infinite,
+  glow 20s infinite;
 }
