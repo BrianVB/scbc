@@ -762,7 +762,6 @@ function set_brews_admin_order($wp_query) {
     if ( $post_type == 'brew') {
       $wp_query->set('orderby', 'menu_order');
       $wp_query->set('order', 'ASC');
-      print_r($wp_query);
     }
   }
 }
