@@ -112,13 +112,13 @@ left: 201px;
 }
 #hr-2{
 height: 2px;
-width: 74%;
+width: 70%;
 top: 41px;
 left: 202px;
 }
 #hr-3{
 height: 2px;
-width: 65%;
+width: 62%;
 top: 78px;
 left: 164px;
 }
@@ -181,18 +181,15 @@ display:none;
   .bottom-sep{
   margin-bottom:0;
   }
-  .bottom-sep:after{
-  bottom:40px;
-  }
-  .home .col-xs-12 {
+  .bottom-sep.col-xs-12 {
     position: relative;
     margin-bottom: 30px;
   }
-  .home .col-xs-12>div:last-child, .page-id-23 .col-xs-12>div:last-child{
+  .bottom-sep.col-xs-12>div:last-child{
   background-color: #000;
-  padding-bottom: 16px;
+  padding-bottom: 35px;
   }
-  .home .col-xs-12:after, .page-id-23 .col-xs-12:after{
+  .bottom-sep.col-xs-12:after{
   box-shadow: 0 0 7px;
   width: 80%;
   height: 10px;
@@ -203,7 +200,7 @@ display:none;
   content: " ";
   display:block;
   }
-  .home .col-xs-12:last-child:after, .page-id-23 .col-xs-12:last-child:after{
+  .bottom-sep.col-xs-12:last-child:after{
   display:none;
   }
 }
@@ -294,26 +291,19 @@ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 input, select{
 height: 34px;
 }
+.cf-sb{
+  text-align:right;
+}
+.cf-sb input{
+  margin-right:7px;
+}
 .sendbutton{
 display: inline-block;
 padding: 6px 12px;
 margin-bottom: 0;
 font-size: 14px;
-font-weight: normal;
-line-height: 1.428571429;
 text-align: center;
-white-space: nowrap;
-vertical-align: middle;
-cursor: pointer;
-background-image: none;
-border: 1px solid transparent;
 border-radius: 4px;
--webkit-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
--o-user-select: none;
-user-select: none;
-float:right;
 }
 .sendbutton:hover{
 color: #333;

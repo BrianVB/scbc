@@ -2,14 +2,14 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 col-sm-4" id="latest-post-container">
+			<div class="col-xs-12 col-sm-4 bottom-sep" id="latest-post-container">
 				<?php $featured_post_query = new WP_Query((array('posts_per_page'=>1))); $featured_post_query->the_post();?>				
 				<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 				<small><?php the_time('F j, Y'); ?> at <?php the_time('g:i a'); ?></small>
 				<p><?php echo get_the_excerpt(); ?></p>
 				<div class="visible-xs"></div>
 			</div>
-			<div class="col-xs-12 col-sm-4" id="latest-instagram-container">
+			<div class="col-xs-12 col-sm-4 bottom-sep" id="latest-instagram-container">
 				<?php if($instagram_photo_data = get_latest_instagram()): ?>
 				<figure style="max-width:<?php echo $instagram_photo_data['images']['low_resolution']['width']; ?>px;">
 					<a href="<?php echo $instagram_photo_data['link']; ?>"><img class="img-responsive" src="<?php echo $instagram_photo_data['images']['low_resolution']['url']; ?>" alt="" /></a>
