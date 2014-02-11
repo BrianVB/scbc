@@ -209,7 +209,8 @@ display:none;
 font-size: 1.3em;
 font-family: "Euphemia UCAS", sans-serif;
 font-style: italic;
-padding: 5px 0;
+padding-bottom:5px;
+padding-top:5px;
 }
 #menu-main-navigation > div{
 text-align:center;
