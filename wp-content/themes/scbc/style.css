@@ -527,7 +527,10 @@ padding: 10px;
     left:0;
     margin-bottom:0;
   }
-
+  #latest-facebook{
+    width:85%;
+    margin:0 auto;
+  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .page .sidebar {
