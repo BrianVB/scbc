@@ -24,7 +24,6 @@ $page_description = scbc_get_the_meta_desc();
 	<link rel="stylesheet" type="text/css" href="<?php echo auto_version('/wp-content/themes/scbc/style.css'); ?>" media="screen, projection" />
 	<meta name="description" content="<?php echo $page_description; ?>" />
   	<meta property="fb:app_id" content="<?php echo FACEBOOK_APP_ID; ?>" />
-  	<!-- <meta property="fb:page_id" content="246784288705094" /> -->
 	<meta property="og:title"  content="<?php echo $page_title; ?>" />
 	<meta property="og:description"  content="<?php echo $page_description; ?>" />
 	<meta property="og:url"    content="<?php echo "http://" . $_SERVER['HTTP_HOST']  . $_SERVER['REQUEST_URI']; ?>" />
@@ -114,6 +113,6 @@ function testAPI() {
 	</header><!-- #masthead -->
 	<script type="text/javascript">
 	jQuery(document).ready(function($){
-		$("header").addClass('hr-visible');
+		$("header").addClass('reveal');
 	});
 	</script>

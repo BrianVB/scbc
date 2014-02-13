@@ -134,7 +134,7 @@ width:0%;
 box-shadow:0px 1px 3px;
 background:#fff;
 }
-.hr-visible .inner{
+.reveal .inner{
 -webkit-transition: width 2s ease-in-out;
 -moz-transition: width 2s ease-in-out;
 -o-transition: width 2s ease-in-out;
@@ -530,9 +530,15 @@ padding: 10px;
     left:0;
     margin-bottom:0;
   }
-  #latest-facebook{
-    width:85%;
-    margin:0 auto;
+  #logo_text, #logo{
+    opacity:0;
+  }
+  .reveal #logo_text, .reveal #logo{
+    -webkit-transition: opacity 2s ease-in-out;
+    -moz-transition: opacity 2s ease-in-out;
+    -o-transition: opacity 2s ease-in-out;
+    transition: opacity 2s ease-in-out;
+    opacity:1;
   }
 }
 @media (min-width: 768px) {
