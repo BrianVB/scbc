@@ -545,9 +545,15 @@ function get_latest_facebook(){
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   $result_raw = curl_exec($ch);
   $result_decoded = json_decode($result_raw,true);
-
+  
   if(isset($result_decoded['posts']['data'][0])){
-    return $result_decoded['posts']['data'][0];
+    $post = $result_decoded['posts']['data'][0];
+    if($post['type'] == 'photo'){
+      preg_match('/_(\d+)/', $post['id'], $matches);
+      return '<p><a href="http://facebook.com/SpaceCraftBrewing/posts/'.$matches[1].'/" target="_blank" title="View on Facebook">'.$post['story'].'</a></p><a href="http://facebook.com/SpaceCraftBrewing/posts/'.$matches[1].'/" target="_blank" title="View on Facebook"><img src="'.$post['picture'].'"/><span style="vertical-align:middle;margin-left: 30px;">View More &hellip;</span></a>';
+    } else {
+      return '<p>'.$post['message'].'</p>';
+    }
   } else {
     return false;
   }

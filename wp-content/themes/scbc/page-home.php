@@ -43,17 +43,24 @@
 					</div>
 				</div>
 				<div class="row" id="latest-facebook">
-					<div class="col-xs-12">
-						<?php if($latest_facebook_post = get_latest_facebook()): ?>
-						<img class="facebook-icon" src="<?php echo get_facebook_icon_url(); ?>" alt="Space Craft Brewing Facebook Icon"/>
-						<?php echo $latest_facebook_post['message']; ?>
-						<?php else: ?>
-						Our latest facebook post is not available. Please cry about it.
-						<?php endif; ?>
-					</div>
 					<div class="like-container col-xs-12">
-						<div class="fb-like" data-href="https://www.facebook.com/SpaceCraftBrewing" data-layout="button" data-show-faces="true" data-action="like" data-share="true"></div>
-					</div>
+						<div class="clearfix">
+							<a target="_blank" href="http://www.facebook.com/SpaceCraftBrewing"><img class="facebook-icon" src="<?php echo get_facebook_icon_url(); ?>" alt="Space Craft Brewing Facebook Icon"/></a>
+							<div>
+								<a target="_blank" href="http://www.facebook.com/SpaceCraftBrewing"><strong>Space Craft Brewing Company</strong></a><br />
+								<div class="fb-like" data-href="https://www.facebook.com/SpaceCraftBrewing" data-layout="button" data-show-faces="true" data-action="like" data-share="true"></div>
+							</div>
+						</div>
+						<div class="bottom">
+						<?php
+						if($latest_facebook_post = get_latest_facebook()){
+							echo $latest_facebook_post;
+						} else{
+							echo 'Our latest facebook post is not available. Please cry about it.';
+						}
+						?>
+						</div>
+					<div>
 				</div>
 			</div>
 		</div>
