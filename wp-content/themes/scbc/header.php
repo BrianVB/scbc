@@ -90,11 +90,13 @@ function testAPI() {
 	<?php if(is_front_page()): ?>
 		<div class="container">	
 			<a href="/"><img id="logo" src="/wp-content/themes/scbc/img/logo.png" alt="Space Craft Brewing Company" /></a>
-			<div id="hr-1" class="logo-hr"><div class="inner"></div></div>
-			<div id="hr-2" class="logo-hr"><div class="inner"></div></div>
 			<h1 id="logo_text">Space Craft Brewing Co</h1>
-			<div id="hr-3" class="logo-hr"><div class="inner"></div></div>
-			<div id="hr-4" class="logo-hr"><div class="inner"></div></div>
+			<div class="hidden-xs">
+				<div id="hr-1" class="logo-hr"><div class="inner"></div></div>
+				<div id="hr-2" class="logo-hr"><div class="inner"></div></div>
+				<div id="hr-3" class="logo-hr"><div class="inner"></div></div>
+				<div id="hr-4" class="logo-hr"><div class="inner"></div></div>
+			</div>
 		</div>
 	<?php endif; ?>
 		<div id="navigation">
@@ -102,7 +104,7 @@ function testAPI() {
 				<div class="row">
 					<div class="col-xs-4 col-sm-2"><a href="/">Home</a></div>
 					<div class="col-xs-4 col-sm-2"><a href="/about-us/">About</a></div>
-					<div class="col-xs-4 col-sm-2"><a href="/beer/">Spacebrews</a></div>
+					<div class="col-xs-4 col-sm-2"><a href="/beer/">SpaceBrews</a></div>
 					<div class="col-xs-4 col-sm-2"><a href="/merch/">Merch</a></div>
 					<div class="col-xs-4 col-sm-2"><a href="/news/">News</a></div>
 					<div class="col-xs-4 col-sm-2"><a href="/contact-us/">Contact</a></div>
