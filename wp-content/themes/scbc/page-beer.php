@@ -38,7 +38,7 @@
 		</div>
 		<div class="col-sm-3">
 			<div class="sidebar">
-				<div id="brews-menu-container">
+				<div id="brews-menu-container" class="nav-container">
 					<ul id="brews-menu" class="nav">
 						<li><a href="#brews-main-content">The Spacebrews</a></li>
 						<?php foreach($menu_items as $menu_item): ?>

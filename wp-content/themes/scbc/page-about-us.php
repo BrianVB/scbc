@@ -7,7 +7,7 @@
 		</div>
 		<div class="col-sm-3">
 			<div class="sidebar">
-				<div id="about-menu-container">
+				<div id="about-menu-container" class="nav-container">
 					<ul id="about-menu" class="nav">
 						<li><a href="#mission-heading">The Statement of Universal Intent</a></li>
 						<li><a href="#origin-heading">The Origin</a></li>
