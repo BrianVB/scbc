@@ -32,10 +32,11 @@
 			<div class="col-xs-12 col-sm-4" id="social-container">
 				<div class="row bottom-sep" id="next-event">
 					<div class="col-xs-12">
+						<h2>Upcoming Events</h2>
 <?php
 						$next_event_query = new WP_Query((array('post_type'=>'event','posts_per_page'=>1)));
 						$next_event_query->the_post();
-						$nex = get_post_meta(get_the_id());
+						$next_event_meta = get_post_meta(get_the_id());
 ?>
 						<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 						<small><?php echo date('F j, Y', mktime($next_event_meta['_event_date'][0])); ?> at <?php echo $next_event_meta['_event_time'][0];?> at <?php echo $next_event_meta['_event_location'][0]; ?></small>
