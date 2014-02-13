@@ -174,18 +174,15 @@ bottom: 10px;
 content: " ";
 }
 .bottom-sep:last-child:after{
-display:none;
+display:none; /* Only set this to display on small screens */
 }
 
 @media (max-width: 767px) {
-  .bottom-sep{
-  margin-bottom:0;
-  }
-  .bottom-sep.col-xs-12 {
+  .bottom-sep/*.col-xs-12*/ {
     position: relative;
     margin-bottom: 30px;
   }
-  .bottom-sep.col-xs-12>div:last-child{
+  .bottom-sep/*.col-xs-12*/>div:last-child{
   background-color: #000;
   padding-bottom: 35px;
   }
@@ -355,8 +352,12 @@ margin-right:10px;
 .fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
 max-width: 100% !important;
 }
-.like-container{
-margin-top:20px;
+.like-container .clearfix{
+border-bottom:1px solid;
+margin-bottom:5px;
+}
+.like-container strong{
+font-size:.9em;
 }
 
 /* Instagram */
@@ -509,7 +510,9 @@ border: 1px solid white;
 border-radius: 15px;
 padding: 10px;
 }
-
+.page .nav-container{
+  margin-bottom:20px;
+}
 @media (max-width: 767px) {
   .page .col-sm-3 {
     display:none;
