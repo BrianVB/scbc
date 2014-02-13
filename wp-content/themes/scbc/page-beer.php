@@ -20,12 +20,12 @@
 			<div class="row bottom-sep">
 				<div class="col-xs-12">
 					<div class="row brew-container" id="<?php echo $menu_items[$x]['html-id'] ?>">
-						<div class="col-xs-6">
+						<div class="col-sm-6 col-xs-12">
 							<h2><?php echo $menu_items[$x]['label']; ?></h2>
 							<?php the_content(); ?>
 							<?php echo $brew_meta; ?>
 						</div>
-						<div class="col-xs-6">
+						<div class="col-sm-6 col-xs-12">
 							<img class="img-responsive" src="http://placehold.it/439/000/fff&text=Label+Coming+Soon!">
 						</div>
 					</div>
