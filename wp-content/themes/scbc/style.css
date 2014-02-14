@@ -71,6 +71,7 @@ background-color: #333;
 box-shadow: 1px 1px 1px #CCC;
 border: 0px solid #222;
 border-radius:4px;
+color:#FFF;
 }
 button{
 font-size: 4.5em;
@@ -312,6 +313,8 @@ color:#FF4A4A;
 color:#76EE00;
 }
 input, select, textarea{
+padding-left:10px;
+color:#000;
 width:74%;
 vertical-align: middle;
 border: 1px solid #ccc;
@@ -331,10 +334,6 @@ height: 34px;
 }
 #contact-form-container .cf-sb{
   text-align:right;
-}
-input, textarea{
-  color:#000;
-  padding-left:10px;
 }
 .cf-sb input{
   margin-right:7px;
@@ -379,6 +378,9 @@ vertical-align: middle;
 }
 
 /* Facebook */
+#facebook-login{
+margin-bottom:20px;
+}
 .facebook-icon{
 float:left;
 margin-right:10px;
@@ -532,6 +534,13 @@ background-position:0 -20px;
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   }
+}
+#age-verification-modal .modal-body{
+text-align:center;
+}
+#birthday-form select{
+margin-bottom:5px;
+padding-top:7px;
 }
 
 /* Contact Page */
@@ -704,4 +713,3 @@ padding: 10px;
 animation:black-to-white 20s infinite,
   glow 20s infinite;
 }
-

@@ -85,9 +85,9 @@ jQuery(document).ready(function($) {
 			if (response.status === 'connected') { // the user is logged in and has authenticated your app
 
 			} else if (response.status === 'not_authorized') { // the user is logged in to Facebook, but has not authenticated your app
-
+				
 			} else { // the user isn't logged in to Facebook.
-				$(".fb-like").html('This replaces like buttons for non-logged-into-fb users');
+				$(".fb-like").html('<a target="_blank" title="Like us on Facebook" href="http://www.facebook.com/SpaceCraftBrewing"><img src="/wp-content/themes/scbc/img/fb-like-relpacement.png" alt="Like Space Craft Brewing On Facbook" /></a>');
 			}
 		});
 
