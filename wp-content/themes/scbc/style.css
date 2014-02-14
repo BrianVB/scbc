@@ -386,12 +386,12 @@ margin-right:10px;
 .fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
 max-width: 100% !important;
 }
-.like-container .clearfix{
+.facebook-container .icon-like-container{
 border-bottom:1px solid;
 margin-bottom:5px;
 padding-bottom:5px;
 }
-.like-container strong{
+.icon-like-container strong{
 font-size:.9em;
 }
 

@@ -13,15 +13,7 @@
 						<li><a href="#origin-heading">The Origin</a></li>
 					</ul>
 				</div>
-				<div class="like-container">
-					<div class="clearfix">
-						<a target="_blank" href="http://www.facebook.com/SpaceCraftBrewing"><img class="facebook-icon" src="<?php echo get_facebook_icon_url(); ?>" alt="Space Craft Brewing Facebook Icon"/></a>
-						<div>
-							<a target="_blank" href="http://www.facebook.com/SpaceCraftBrewing"><strong>Space Craft Brewing Company</strong></a><br />
-							<div class="fb-like" data-href="https://www.facebook.com/SpaceCraftBrewing" data-layout="button" data-show-faces="true" data-action="like" data-share="true"></div>
-						</div>
-					</div>
-				</div>
+<?php include_once $_SERVER['DOCUMENT_ROOT'].'/wp-content/themes/scbc/inc/_facebook.php'; ?>
 			</div>
 		</div>
 	</div>
