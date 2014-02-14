@@ -69,9 +69,8 @@ jQuery(document).ready(function($) {
 
 	$width = $(window).width();
 	if($width <= 767){
-		$sidebar_width = ($width/2)-30;
-		$( '<style id="affix-width-declaration">.sidebar.affix { width: '+$sidebar_width+'px; }</style>' ).appendTo( "head" ); // --- we do the -30 for the padding
-		// $(".sidebar.affix").css("width",$width/2+'px');
+		$sidebar_width = ($width*.75)-30;  // --- we do the -30 for the padding
+		$( '<style id="affix-width-declaration">.sidebar.affix { width: '+$sidebar_width+'px; }</style>' ).appendTo( "head" );
 	}
 	
 	$.ajaxSetup({ cache: true });

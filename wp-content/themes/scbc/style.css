@@ -253,6 +253,9 @@ margin:0 0 30px 40px;
 padding:10px 0px 5px 10px;
 position:relative;
 }
+#brews-menu li{
+padding:5px 0px 5px 10px;
+}
 .nav .active{
 font-weight:bold;
 }
@@ -263,7 +266,10 @@ position: absolute;
 top: 9px;
 left: 0;
 }
-.blog .nav li, .single .nav li, .archive .nav li{
+#brews-menu .active:before{
+top: 3px;
+}
+.archive-sidebar .nav li{
 padding:0px 0 0px 10px
 }
 .widgettitle{
@@ -295,8 +301,15 @@ margin-bottom:5px;
 .cf_hidden{
 display:none;
 }
+.cf_info{
+text-align: center;
+padding-bottom: 10px;
+}
 .cf_li_err label, .cf_info.failure{
 color:#FF4A4A;
+}
+.cf_info.success{
+color:#76EE00;
 }
 input, select, textarea{
 width:74%;
@@ -318,6 +331,10 @@ height: 34px;
 }
 #contact-form-container .cf-sb{
   text-align:right;
+}
+input, textarea{
+  color:#000;
+  padding-left:10px;
 }
 .cf-sb input{
   margin-right:7px;
@@ -372,6 +389,7 @@ max-width: 100% !important;
 .like-container .clearfix{
 border-bottom:1px solid;
 margin-bottom:5px;
+padding-bottom:5px;
 }
 .like-container strong{
 font-size:.9em;
@@ -588,6 +606,10 @@ padding: 10px;
   margin: 0;
   }
 
+  #brews-menu li{
+    padding:3px 0px 3px 10px;
+  }
+
   /*
    * Off Canvas
    * --------------------------------------------------
@@ -607,17 +629,17 @@ padding: 10px;
 
   .row-offcanvas
   .sidebar-offcanvas {
-    right: -50%; /* 6 columns */
+    right: -75%; /* 6 columns */
   }
 
   .row-offcanvas.active {
-    right: 55%; /* 6 columns */
+    right: 80%; /* 6 columns */
   }
 
   .sidebar-offcanvas {
     position: absolute;
     top: 0;
-    width: 50%; /* 6 columns */
+    width: 75%; /* 6 columns */
   }
 
   /* Header Navigation */
@@ -644,17 +666,17 @@ padding: 10px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .page .sidebar {
+  .sidebar {
     width:157px;
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-  .page .sidebar {
+  .sidebar {
     width:212px;
   }
 }
 @media (min-width: 1200px) {
-  .page .sidebar {
+  .sidebar {
     width:262px;
   }
 }
