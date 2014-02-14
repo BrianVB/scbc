@@ -713,3 +713,8 @@ padding: 10px;
 animation:black-to-white 20s infinite,
   glow 20s infinite;
 }
+
+.signature{
+  font-family: "DymaxionScriptRegular","script", serif;
+  font-size:2em;
+}
