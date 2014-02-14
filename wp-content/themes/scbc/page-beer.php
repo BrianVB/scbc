@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <div class="container">
-	<div class="row">
+	<div class="row row-offcanvas">		
 		<div class="col-xs-12 col-sm-9">
 			<?php the_post(); ?>
 			<div class="row bottom-sep"id="brews-main-content">
@@ -36,7 +36,7 @@
 			endwhile;
 ?>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-3 sidebar-offcanvas">
 			<div class="sidebar">
 				<div id="brews-menu-container" class="nav-container">
 					<ul id="brews-menu" class="nav">
@@ -58,12 +58,7 @@
 jQuery(document).ready(function($){
 	$('body').scrollspy({ target: '#brews-menu-container' });
 	$(window).on('load', function () {
-		$("body").scrollspy('refresh')
-	})
-	$('.sidebar').affix({
-		offset: {
-			top: 74
-		}
+		$("body").scrollspy('refresh');
 	});
 });
 </script>

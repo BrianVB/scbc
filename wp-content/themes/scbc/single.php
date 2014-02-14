@@ -11,7 +11,7 @@ get_header();
 ?>
 
 <div class="container">
-    <div class="row">
+    <div class="row row-offcanvas">
         <div class="col-xs-12 col-sm-9 post">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                 <h1><?php echo $title; ?></h1>
@@ -21,13 +21,19 @@ get_header();
                 </figure>
                 <?php the_content('<p class="serif">Read the rest of this page &raquo;</p>'); ?>
                 <div class="fb-like" data-href="<?php echo get_permalink(); ?>" data-share="true"></div>
-            
             <?php endwhile; endif; ?>
         </div>
-        <div class="col-sm-3">
-            <?php dynamic_sidebar('Post Sidebar'); ?>
-            <div class="like-container">
-                <div class="fb-like" data-href="https://www.facebook.com/SpaceCraftBrewing" data-layout="button" data-show-faces="true" data-action="like" data-share="true"></div>
+        <div class="col-sm-3 sidebar-offcanvas">
+            <div class="sidebar">
+                <?php get_search_form(); ?>
+                <div class="nav-container">
+                    <div class="nav">
+                        <?php dynamic_sidebar('Post Sidebar'); ?>
+                    </div>
+                </div>
+                <div class="like-container">
+                    <div class="fb-like" data-href="https://www.facebook.com/SpaceCraftBrewing" data-layout="button" data-show-faces="true" data-action="like" data-share="true"></div>
+                </div>
             </div>
         </div>
     </div>

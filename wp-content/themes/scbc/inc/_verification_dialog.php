@@ -7,9 +7,11 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-sm-6" id="facebook-login">
+						<p>Verify your age with Facbook</p>
 						<div class="fb-login-button"></div>
 					</div>
 					<div class="col-sm-6">
+						<p>Twll us your birthday</p>
 						<form method="post" action="">
 							<select name="dob[month]">
 								<?php global $months; foreach($months as $num=>$name): ?>

@@ -1,6 +1,7 @@
 <?php
 $page_title = scbc_get_the_title();
 $page_description = scbc_get_the_meta_desc();
+$is_front_page = is_front_page();
 ?>
 <!DOCTYPE html>
 <!--[if IE 7]>
@@ -39,12 +40,40 @@ $page_description = scbc_get_the_meta_desc();
 		ga('create', 'UA-9709827-3', 'spacebrews.com');
 		ga('send', 'pageview');
 	</script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body <?php body_class(); ?>>
 <div id="fb-root"></div>
 <script>
 jQuery(document).ready(function($) {
+	// --- Reveal hidden elements
+	$("header").addClass('reveal');
+
+	// --- Offcanvas sidebar
+	$('[data-toggle=offcanvas]').click(function() {
+		$('.row-offcanvas').toggleClass('active');
+	});
+	
+	// --- Header Navigation
+	$('[data-toggle=mobile-header]').click(function() {
+		$('#navigation').toggleClass('mobile-revealed');
+	});
+
+	$('.sidebar').affix();
+
+	$width = $(window).width();
+	if($width <= 767){
+		$sidebar_width = ($width/2)-30;
+		$( '<style id="affix-width-declaration">.sidebar.affix { width: '+$sidebar_width+'px; }</style>' ).appendTo( "head" ); // --- we do the -30 for the padding
+		// $(".sidebar.affix").css("width",$width/2+'px');
+	}
+	
 	$.ajaxSetup({ cache: true });
 	$.getScript('//connect.facebook.net/en_UK/all.js', function(){
 		FB.init({
@@ -62,7 +91,6 @@ jQuery(document).ready(function($) {
 				$(".fb-like").html('This replaces like buttons for non-logged-into-fb users');
 			}
 		});
-
 
 		FB.Event.subscribe('auth.authResponseChange', function(response) {
 			if (response.status === 'connected') {
@@ -86,7 +114,7 @@ function testAPI() {
 }
 </script>
 	<header>
-	<?php if(is_front_page()): ?>
+	<?php if($is_front_page): ?>
 		<div class="container">	
 			<a href="/"><img id="logo" src="/wp-content/themes/scbc/img/logo.png" alt="Space Craft Brewing Company" /></a>
 			<h1 id="logo_text">Space Craft Brewing Co</h1>
@@ -98,21 +126,20 @@ function testAPI() {
 			</div>
 		</div>
 	<?php endif; ?>
+		<div id="mobile-navbar" class="clearfix">
+			<button type="button" id="main-nav-toggle-button" class="left" data-toggle="mobile-header">+</button>
+			<button type="button" id="side-nav-toggle-button" class="right" data-toggle="offcanvas">+</button>
+		</div>
 		<div id="navigation">
 			<div id="menu-main-navigation" class="container">
 				<div class="row">
-					<div class="col-xs-4 col-sm-2"><a href="/">Home</a></div>
-					<div class="col-xs-4 col-sm-2"><a href="/about-us/">About</a></div>
-					<div class="col-xs-4 col-sm-2"><a href="/beer/">SpaceBrews</a></div>
-					<div class="col-xs-4 col-sm-2"><a href="/merch/">Merch</a></div>
-					<div class="col-xs-4 col-sm-2"><a href="/news/">News</a></div>
-					<div class="col-xs-4 col-sm-2"><a href="/contact-us/">Contact</a></div>
+					<div class="col-xs-6 col-sm-2"><a href="/">Home</a></div>
+					<div class="col-xs-6 col-sm-2"><a href="/about-us/">About</a></div>
+					<div class="col-xs-6 col-sm-2"><a href="/beer/">SpaceBrews</a></div>
+					<div class="col-xs-6 col-sm-2"><a href="/merch/">Merch</a></div>
+					<div class="col-xs-6 col-sm-2"><a href="/news/">News</a></div>
+					<div class="col-xs-6 col-sm-2"><a href="/contact-us/">Contact</a></div>
 				</div>
 			</div>
 		</div>
-	</header><!-- #masthead -->
-	<script type="text/javascript">
-	jQuery(document).ready(function($){
-		$("header").addClass('reveal');
-	});
-	</script>
+	</header>

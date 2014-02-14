@@ -42,6 +42,10 @@ Version: 1.0
     font-style: italic;
 }
 
+body{
+padding-bottom:40px;
+}
+
 header{
 font-family: "DymaxionScriptRegular","script", serif;
 position:relative;
@@ -62,7 +66,19 @@ list-style-type:none;
 padding:0;
 margin:0;
 }
-
+button, .sendbutton{
+background-color: #333;  
+box-shadow: 1px 1px 1px #CCC;
+border: 0px solid #222;
+border-radius:4px;
+}
+button{
+font-size: 4.5em;
+padding: 0;
+height: 30px;
+line-height: 30px;
+width: 30px;
+}
 figcaption{
 font-size:80%;
 font-style: italic;
@@ -141,7 +157,10 @@ background:#fff;
 transition: width 2s ease-in-out;
 width:100%;
 } 
-
+#mobile-navbar{
+  display:none;
+  padding: 5px;
+}
 .home #navigation{
 border-top: 1px solid #fff;
 margin-top: 29px;
@@ -244,17 +263,20 @@ position: absolute;
 top: 9px;
 left: 0;
 }
+.blog .nav li, .single .nav li, .archive .nav li{
+padding:0px 0 0px 10px
+}
 .widgettitle{
-margin:20px 0 0; 
+font-size:1.25em;
+margin-bottom:5px;
 }
 .widget ul{
-margin:0;
+margin:5px;
 padding:0;
 }
 /* Affixed Menus */
 .affix{
 position: fixed;
-top:0;
 }
 .affix-bottom{
 position:absolute;
@@ -289,24 +311,16 @@ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 input, select{
 height: 34px;
 }
-.cf-sb{
+@media (min-width: 768px) {
+  #contact-form-container p{ /* putting this here so what's below overrides this value*/
+    text-align: center;;
+  }
+}
+#contact-form-container .cf-sb{
   text-align:right;
 }
 .cf-sb input{
   margin-right:7px;
-}
-.sendbutton{
-display: inline-block;
-padding: 6px 12px;
-margin-bottom: 0;
-font-size: 14px;
-text-align: center;
-border-radius: 4px;
-}
-.sendbutton:hover{
-color: #333;
-background-color: #ebebeb;
-border-color: #adadad;
 }
 input[type=search], .search-submit{
   display:inline;
@@ -327,7 +341,10 @@ width: 17%;
 border-radius:0 4px 4px 0;
 margin-left:-5px;
 }
-
+#search-form{
+  margin-bottom:25px;
+  text-align:center;
+}
 .mask{
 position: absolute;
 top: 0;
@@ -505,24 +522,49 @@ text-align:center;
 }
 
 /* Sidebar */
-.page .nav{
+.nav{
 border: 1px solid white;
 border-radius: 15px;
 padding: 10px;
 }
-.page .nav-container{
+.nav-container{
   margin-bottom:20px;
 }
+
+
 @media (max-width: 767px) {
-  .col-sm-3 {
+  
+  header{
+    position:fixed;
+    border-bottom:none;
+    box-shadow: 0 1px 5px;
+  }
+  body > .container{
+    margin-top:50px;
+  }
+  .home >.container{
+    margin-top:0;
+  }
+  .home header{
+    text-align:center;
+    position:relative;
+  }
+  .home #menu-main-navigation {
+    position: relative;
+    height:auto;
+    overflow:hidden;
+    padding: 5px 0;
+  }
+  #mobile-navbar{
+    display:block;
+  }
+  .home #mobile-navbar{
     display:none;
   }
   .post .col-sm-8{
     margin-bottom:10px;
   }
-  header{
-    text-align:center;
-  }
+
   #logo_text{
     position: relative;
     font-size: 1.5em;
@@ -539,6 +581,61 @@ padding: 10px;
     -o-transition: opacity 2s ease-in-out;
     transition: opacity 2s ease-in-out;
     opacity:1;
+  }
+  .post figure {
+  float: none;
+  max-width: none;
+  margin: 0;
+  }
+
+  /*
+   * Off Canvas
+   * --------------------------------------------------
+   */
+  html,
+  body {
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
+  }
+
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+    right:0px;
+  }
+
+  .row-offcanvas
+  .sidebar-offcanvas {
+    right: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas.active {
+    right: 55%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 50%; /* 6 columns */
+  }
+
+  /* Header Navigation */
+  #menu-main-navigation {
+    position: relative;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+    height:0;
+    overflow:hidden;
+    padding:5px 0 0;
+  }
+  .mobile-revealed #menu-main-navigation {
+    border-top: 1px solid #666666;
+    height: 90px;
+  }
+  .sidebar{
+    width:100%;
   }
 }
 @media (min-width: 768px) {
@@ -585,3 +682,4 @@ padding: 10px;
 animation:black-to-white 20s infinite,
   glow 20s infinite;
 }
+

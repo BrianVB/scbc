@@ -1,7 +1,12 @@
 <?php get_header(); ?>
 <div class="container" id="news-container">
-	<div class="row">
+	<div class="row row-offcanvas">
 		<div class="col-xs-12 col-sm-9">
+			<?php if(is_date()): ?>
+				<h1 class="pagetitle">Archive for the month of <?php echo get_the_date('F, Y'); ?></h2>
+			<?php elseif(is_category()): ?>
+				<h1 class="pagetitle">Archive for the <?php single_cat_title(); ?> Category</h2>
+			<?php endif; ?>
 	<?php if ( have_posts() ) : ?>
 		<?php while ( have_posts() ) : the_post(); $the_permalink = get_permalink();?>
 			<div class="row bottom-sep">
@@ -25,10 +30,17 @@
 		Nothingness.
 	<?php endif; ?>
 		</div>
-		<div class="col-sm-3">
-			<?php dynamic_sidebar('Blog Sidebar'); ?>
-			<div class="like-container">
-				<div class="fb-like" data-href="https://www.facebook.com/SpaceCraftBrewing" data-layout="button" data-show-faces="true" data-action="like" data-share="true"></div>
+		<div class="col-sm-3 sidebar-offcanvas">
+			<div class="sidebar">
+			<?php get_search_form(); ?>
+				<div class="nav-container">
+	                <div class="nav">
+						<?php dynamic_sidebar('Blog Sidebar'); ?>
+					</div>
+				</div>
+				<div class="like-container">
+					<div class="fb-like" data-href="https://www.facebook.com/SpaceCraftBrewing" data-layout="button" data-show-faces="true" data-action="like" data-share="true"></div>
+				</div>
 			</div>
 		</div>
 	</div>
