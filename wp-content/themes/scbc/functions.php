@@ -633,20 +633,11 @@ function show_verification_modal(){
  */
 function get_post_featured_image_data() {
   global $post;
+  $thumb_id = get_post_thumbnail_id($post->ID);
+  $thumbnail_image = get_post($thumb_id);
 
-  $thumb_id = get_post_thumbnail_id($post->id);
-
-  $args = array(
-    'post_type' => 'attachment',
-    'post_status' => null,
-    'post_parent' => $post->ID,
-    'include'  => $thumb_id
-  ); 
-
-  $thumbnail_image = get_posts($args);
-
-  if ($thumbnail_image && isset($thumbnail_image[0])) {
-    return $thumbnail_image[0];
+  if ($thumbnail_image && !empty($thumbnail_image->guid)) {
+    return $thumbnail_image;
   } else {
     return false;
   }
