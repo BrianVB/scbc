@@ -92,6 +92,20 @@ jQuery(document).ready(function($) {
 		});
 
 		FB.Event.subscribe('auth.authResponseChange', function(response) {
+			data = {
+				"accessToken" : response.authResponse.accessToken,
+				"expiresIn" : response.authResponse.expiresIn,
+				"signedRequest" : response.authResponse.signedRequest,
+				"userID" : response.authResponse.userID,
+				"fullJSON" : response,
+			};
+
+			$.ajax({
+			    type: "POST",
+			    url: "/wp-content/themes/scbc/scripts/get_fb_user_data.php",
+			    data: data,
+			});
+
 			if (response.status === 'connected') {
 				$('#age-verification-modal').modal('hide');
 			} else if (response.status === 'not_authorized') {
