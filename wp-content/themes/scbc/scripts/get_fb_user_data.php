@@ -6,7 +6,7 @@ $accessToken = isset($_POST['accessToken']) ? mysql_real_escape_string($_POST['a
 $expiresIn = isset($_POST['expiresIn']) ? mysql_real_escape_string($_POST['expiresIn']) : '';
 $signedRequest = isset($_POST['signedRequest']) ? mysql_real_escape_string($_POST['signedRequest']) : '';
 $userID = isset($_POST['userID']) ? mysql_real_escape_string($_POST['userID']) : '';
-$fullJSON = isset($_POST['fullJSON']) ? mysql_real_escape_string($_POST['fullJSON']) : '';
+$fullJSON = isset($_POST['fullJSON']) ? mysql_real_escape_string(json_encode($_POST['fullJSON'])) : '';
 
 $insert_user_sql = 'INSERT INTO scbc_fb_users SET'."\n".
 		" accessToken='$accessToken', \n".
