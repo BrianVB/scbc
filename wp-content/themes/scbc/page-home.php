@@ -40,7 +40,7 @@
 						$next_event_meta = get_post_meta(get_the_id());
 ?>
 						<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-						<small><?php echo date('F j, Y', mktime($next_event_meta['_event_date'][0])); ?> at <?php echo $next_event_meta['_event_time'][0];?> at <?php echo $next_event_meta['_event_location'][0]; ?></small>
+						<small><?php echo date('F j, Y', strtotime($next_event_meta['_event_date'][0])); ?> at <?php echo $next_event_meta['_event_time'][0];?> at <?php echo $next_event_meta['_event_location'][0]; ?></small>
 						<p><?php echo get_the_excerpt(); ?></p>
 <?php					else: ?>
 						<p>Our schedule is free... any ideas? <a href="/contact-us/">Contact us</a> with them!</p>
