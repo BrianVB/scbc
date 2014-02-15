@@ -565,6 +565,7 @@ padding: 10px;
     position:fixed;
     border-bottom:none;
     box-shadow: 0 1px 5px;
+    top:0;
   }
   body > .container{
     margin-top:50px;
